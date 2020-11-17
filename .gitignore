@@ -9,3 +9,8 @@ server.crt
 server.csr
 server.key
 usync-mqtt
+cli/usync-mqtt-cli
+cli/CMakeCache.txt
+cli/CMakeFiles/
+cli/Makefile
+cli/usync-mqtt-cli
