@@ -5,7 +5,7 @@ ADD_DEFINITIONS(-Os -ggdb -Wextra -Wall -Werror --std=gnu99 -Wmissing-declaratio
 
 SET(CMAKE_SHARED_LIBRARY_LINK_C_FLAGS "")
 
-ADD_EXECUTABLE(usync-mqtt main.c ubus.c stats.c)
+ADD_EXECUTABLE(usync-mqtt main.c ubus.c stats.c cmd.c)
 
 TARGET_LINK_LIBRARIES(usync-mqtt mosquitto ubox ubus blobmsg_json)
 

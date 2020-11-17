@@ -54,6 +54,7 @@ static void
 mosq_disconnect_cb(struct mosquitto *mosq, void *obj, int result)
 {
 	ULOG_INFO("disconnected\n");
+
 	client.conn_time = time(NULL);
 	client.connected = 0;
 	uloop_timeout_cancel(&mqtt_stats);
@@ -66,6 +67,11 @@ mosq_msg_cb(struct mosquitto *mosq, void *obj,
 {
 	bool match = 0;
 
+	if (((char *)message->payload)[message->payloadlen - 1]) {
+		ULOG_ERR("received msg that is not 0 terminated\n");
+		return;
+	}
+
 	printf("%s - %.*s\n", message->topic, message->payloadlen, (char *)message->payload);
 
 	mosquitto_topic_matches_sub(client.topic_venue, message->topic, &match);
@@ -73,7 +79,7 @@ mosq_msg_cb(struct mosquitto *mosq, void *obj,
 		mqtt_notify((char *)message->payload, message->payloadlen);
 	mosquitto_topic_matches_sub(client.topic_cmd, message->topic, &match);
 	if (match)
-		printf("cmd\n");
+		cmd_run((char *)message->payload);
 }
 
 static void
@@ -236,6 +242,7 @@ main(int argc, char *argv[])
 	if (!client.debug)
 		ulog_threshold(LOG_INFO);
 
+	cmd_init();
 	uloop_init();
 	stats_init();
 	ubus_init();

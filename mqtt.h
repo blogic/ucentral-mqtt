@@ -58,3 +58,5 @@ int mqtt_publish(struct blob_attr *msg);
 void mqtt_notify(char *msg, int len);
 void stats_init(void);
 void stats_send(void);
+void cmd_init(void);
+void cmd_run(char *cmd);
