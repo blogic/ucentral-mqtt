@@ -31,6 +31,7 @@
 #include <libubus.h>
 
 struct client {
+	int reconnect_timeout;
 	int connect_timeout;
 	int stats_timeout;
 	char *serial;
@@ -44,6 +45,7 @@ struct client {
 	int debug;
 	char topic_venue[64];
 	char topic_stats[64];
+	char topic_cmd[64];
 	int connected;
 	time_t conn_time;
 };
