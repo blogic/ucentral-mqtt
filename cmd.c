@@ -78,7 +78,7 @@ cmd_run(char *cmd)
 	char path[128];
 
 	blob_buf_init(&b, 0);
-	if (blobmsg_add_json_from_string(&b, cmd)) {
+	if (!blobmsg_add_json_from_string(&b, cmd)) {
 		ULOG_ERR("received cmd that is not json\n");
 		return;
 	}
