@@ -72,8 +72,6 @@ mosq_msg_cb(struct mosquitto *mosq, void *obj,
 		return;
 	}
 
-	printf("%s - %.*s\n", message->topic, message->payloadlen, (char *)message->payload);
-
 	mosquitto_topic_matches_sub(client.topic_venue, message->topic, &match);
 	if (match)
 		mqtt_notify((char *)message->payload, message->payloadlen);
