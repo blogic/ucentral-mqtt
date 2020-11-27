@@ -55,19 +55,19 @@ ubus_state_cb(struct ubus_context *ctx,
 	return UBUS_STATUS_OK;
 }
 
-static const struct ubus_method usync_mqtt_methods[] = {
+static const struct ubus_method ucentral_mqtt_methods[] = {
 	UBUS_METHOD_NOARG("state", ubus_state_cb),
 	UBUS_METHOD_NOARG("publish", ubus_publish_cb),
 };
 
 static struct ubus_object_type ubus_object_type =
-	UBUS_OBJECT_TYPE("mqtt", usync_mqtt_methods);
+	UBUS_OBJECT_TYPE("mqtt", ucentral_mqtt_methods);
 
 static struct ubus_object ubus_object = {
 	.name = "mqtt",
 	.type = &ubus_object_type,
-	.methods = usync_mqtt_methods,
-	.n_methods = ARRAY_SIZE(usync_mqtt_methods),
+	.methods = ucentral_mqtt_methods,
+	.n_methods = ARRAY_SIZE(ucentral_mqtt_methods),
 	.subscribe_cb = ubus_subscribe_cb,
 };
 

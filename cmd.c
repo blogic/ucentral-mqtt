@@ -52,7 +52,7 @@ cmd_run_cb(struct runqueue *q, struct runqueue_task *task)
 		return;
 	}
 
-	execlp("/usr/sbin/usync_cmd.sh", "/usr/sbin/usync_cmd.sh", t->path, NULL);
+	execlp("/usr/sbin/ucentral_cmd.sh", "/usr/sbin/ucentral_cmd.sh", t->path, NULL);
 	exit(1);
 }
 
@@ -87,7 +87,7 @@ cmd_run(char *cmd)
 		ULOG_ERR("received cmd that is not valid\n");
 		return;
 	}
-	snprintf(path, sizeof(path), "/tmp/usync.cmd.%ld", time(NULL));
+	snprintf(path, sizeof(path), "/tmp/ucentral.cmd.%ld", time(NULL));
 	fp = fopen(path, "w+");
         if (!fp) {
 		ULOG_ERR("failed to open %s\n", path);

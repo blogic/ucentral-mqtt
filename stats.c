@@ -21,7 +21,7 @@ static struct runqueue_process stats;
 static struct runqueue runqueue;
 static struct blob_buf s;
 
-#define USYNC_STATE	 "/tmp/usync.stats"
+#define USYNC_STATE	 "/tmp/ucentral.stats"
 
 static void
 runqueue_proc_cb(struct uloop_process *p, int ret)
@@ -67,7 +67,7 @@ stats_run_cb(struct runqueue *q, struct runqueue_task *task)
 		return;
 	}
 
-	execlp("/usr/sbin/usync_stats.sh", "/usr/sbin/usync_stats.sh", NULL);
+	execlp("/usr/sbin/ucentral_stats.sh", "/usr/sbin/ucentral_stats.sh", NULL);
 	exit(1);
 }
 

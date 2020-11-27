@@ -27,7 +27,7 @@ struct client client = {
 	.venue = "uSync",
 	.user = "test",
 	.pass = "test",
-	.cert = "/etc/usync/mqtt.crt",
+	.cert = "/etc/ucentral/mqtt.crt",
 	.self_signed = 1,
 };
 
@@ -236,7 +236,7 @@ main(int argc, char *argv[])
 
 	client.conn_time = time(NULL);
 
-	ulog_open(ULOG_STDIO | ULOG_SYSLOG, LOG_DAEMON, "usync-mqtt");
+	ulog_open(ULOG_STDIO | ULOG_SYSLOG, LOG_DAEMON, "ucentral-mqtt");
 	if (!client.debug)
 		ulog_threshold(LOG_INFO);
 
